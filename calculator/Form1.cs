@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace calculator
 {
     public partial class Form1 : Form
     {
+        // 計算結果
         double CalResult = 0.0;
+        // 輸入的字串
         StringBuilder InputText = new StringBuilder(String.Empty);
+        // 是否為全新的輸入
         bool newInput = true;
+        // 運算子
         string OperationSign = String.Empty;
+        // 是否為新一輪的計算(按過 =)
         bool firstNumber = true;
 
         public Form1()
@@ -80,7 +79,7 @@ namespace calculator
                 InputText.Append("0.");
                 textBox1.Text = InputText.ToString();
             }
-            else if(textBox1.Text.IndexOf(".") == -1) //沒有輸入過 "."
+            else if(textBox1.Text.IndexOf(".") == -1) // 防呆用, 沒有輸入過 "."
             {
                 InputText.Append(".");
                 textBox1.Text = InputText.ToString();
@@ -146,6 +145,7 @@ namespace calculator
         {
             InputText.Clear();
             InputText.Append(textBox1.Text);
+            // 防止刪除只有一位數的數字
             if (InputText.Length >= 1 && newInput)
             {
                 InputText.Remove(InputText.Length - 1, 1);
@@ -153,6 +153,10 @@ namespace calculator
             textBox1.Text = InputText.ToString();
         }
 
+        /// <summary>
+        /// 新增數字
+        /// </summary>
+        /// <param name="number">新增的數字</param>
         private void AddNumber(string number)
         {
             if (newInput)
@@ -169,6 +173,10 @@ namespace calculator
             newInput = false;
         }
 
+        /// <summary>
+        /// 計算
+        /// </summary>
+        /// <param name="operation">要進行的運算</param>
         private void DoOperation(string operation)
         {
             if (firstNumber)
