@@ -25,161 +25,51 @@ namespace calculator
 
         private void oneButton_Click(object sender, EventArgs e)
         {
-            if(newInput)
-            {
-                InputText.Clear();
-                InputText.Append("1");
-                textBox1.Text = InputText.ToString();
-            }
-            else
-            {
-                InputText.Append("1");
-                textBox1.Text = InputText.ToString();
-            }
-            newInput = false;
+            AddNumber("1");
         }
         private void twoButton_Click(object sender, EventArgs e)
         {
-            if (newInput)
-            {
-                InputText.Clear();
-                InputText.Append("2");
-                textBox1.Text = InputText.ToString();
-            }
-            else
-            {
-                InputText.Append("2");
-                textBox1.Text = InputText.ToString();
-            }
-            newInput = false;
+            AddNumber("2");
         }
 
         private void threeButton_Click(object sender, EventArgs e)
         {
-            if (newInput)
-            {
-                InputText.Clear();
-                InputText.Append("3");
-                textBox1.Text = InputText.ToString();
-            }
-            else
-            {
-                InputText.Append("3");
-                textBox1.Text = InputText.ToString();
-            }
-            newInput = false;
+            AddNumber("3");
         }
 
         private void fourButton_Click(object sender, EventArgs e)
         {
-            if (newInput)
-            {
-                InputText.Clear();
-                InputText.Append("4");
-                textBox1.Text = InputText.ToString();
-            }
-            else
-            {
-                InputText.Append("4");
-                textBox1.Text = InputText.ToString();
-            }
-            newInput = false;
+            AddNumber("4");
         }
 
         private void fiveButton_Click(object sender, EventArgs e)
         {
-            if (newInput)
-            {
-                InputText.Clear();
-                InputText.Append("5");
-                textBox1.Text = InputText.ToString();
-            }
-            else
-            {
-                InputText.Append("5");
-                textBox1.Text = InputText.ToString();
-            }
-            newInput = false;
+            AddNumber("5");
         }
 
         private void sixButton_Click(object sender, EventArgs e)
         {
-            if (newInput)
-            {
-                InputText.Clear();
-                InputText.Append("6");
-                textBox1.Text = InputText.ToString();
-            }
-            else
-            {
-                InputText.Append("6");
-                textBox1.Text = InputText.ToString();
-            }
-            newInput = false;
+            AddNumber("6");
         }
 
         private void sevenButton_Click(object sender, EventArgs e)
         {
-            if (newInput)
-            {
-                InputText.Clear();
-                InputText.Append("7");
-                textBox1.Text = InputText.ToString();
-            }
-            else
-            {
-                InputText.Append("7");
-                textBox1.Text = InputText.ToString();
-            }
-            newInput = false;
+            AddNumber("7");
         }
 
         private void eightButton_Click(object sender, EventArgs e)
         {
-            if (newInput)
-            {
-                InputText.Clear();
-                InputText.Append("8");
-                textBox1.Text = InputText.ToString();
-            }
-            else
-            {
-                InputText.Append("8");
-                textBox1.Text = InputText.ToString();
-            }
-            newInput = false;
+            AddNumber("8");
         }
 
         private void nineButton_Click(object sender, EventArgs e)
         {
-            if (newInput)
-            {
-                InputText.Clear();
-                InputText.Append("9");
-                textBox1.Text = InputText.ToString();
-            }
-            else
-            {
-                InputText.Append("9");
-                textBox1.Text = InputText.ToString();
-            }
-            newInput = false;
+            AddNumber("9");
         }
 
         private void zeroButton_Click(object sender, EventArgs e)
         {
-            if (newInput)
-            {
-                InputText.Clear();
-                InputText.Append("0");
-                textBox1.Text = InputText.ToString();
-            }
-            else
-            {
-                InputText.Append("0");
-                textBox1.Text = InputText.ToString();
-            }
-            newInput = false;
+            AddNumber("0");
         }
 
         private void pointButton_Click(object sender, EventArgs e)
@@ -190,7 +80,7 @@ namespace calculator
                 InputText.Append("0.");
                 textBox1.Text = InputText.ToString();
             }
-            else
+            else if(textBox1.Text.IndexOf(".") == -1) //沒有輸入過 "."
             {
                 InputText.Append(".");
                 textBox1.Text = InputText.ToString();
@@ -200,70 +90,22 @@ namespace calculator
 
         private void plusButton_Click(object sender, EventArgs e)
         {
-            if(firstNumber)
-            {
-                CalResult = Convert.ToDouble(textBox1.Text);
-            }
-            else
-            {
-                CalResult += Convert.ToDouble(textBox1.Text);
-            }
-            
-            textBox1.Text = Convert.ToString(CalResult);
-            OperationSign = "+";
-            newInput = true;
-            firstNumber = false;
+            DoOperation("+");
         }
 
         private void minusButton_Click(object sender, EventArgs e)
         {
-            if (firstNumber)
-            {
-                CalResult = Convert.ToDouble(textBox1.Text);
-            }
-            else
-            {
-                CalResult -= Convert.ToDouble(textBox1.Text);
-            }
-
-            textBox1.Text = Convert.ToString(CalResult);
-            OperationSign = "-";
-            newInput = true;
-            firstNumber = false;
+            DoOperation("-");
         }
 
         private void multiplyButton_Click(object sender, EventArgs e)
         {
-            if (firstNumber)
-            {
-                CalResult = Convert.ToDouble(textBox1.Text);
-            }
-            else
-            {
-                CalResult *= Convert.ToDouble(textBox1.Text);
-            }
-
-            textBox1.Text = Convert.ToString(CalResult);
-            OperationSign = "x";
-            newInput = true;
-            firstNumber = false;
+            DoOperation("x");
         }
 
         private void divButton_Click(object sender, EventArgs e)
         {
-            if (firstNumber)
-            {
-                CalResult = Convert.ToDouble(textBox1.Text);
-            }
-            else
-            {
-                CalResult /= Convert.ToDouble(textBox1.Text);
-            }
-
-            textBox1.Text = Convert.ToString(CalResult);
-            OperationSign = "/";
-            newInput = true;
-            firstNumber = false;
+            DoOperation("/");
         }
 
         private void equalButton_Click(object sender, EventArgs e)
@@ -280,7 +122,7 @@ namespace calculator
             {
                 CalResult *= Convert.ToDouble(textBox1.Text);
             }
-            else
+            else if(OperationSign == "/")
             {
                 CalResult /= Convert.ToDouble(textBox1.Text);
             }
@@ -297,17 +139,67 @@ namespace calculator
             CalResult = 0.0;
             newInput = true;
             OperationSign = String.Empty;
+            firstNumber = true;
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
             InputText.Clear();
             InputText.Append(textBox1.Text);
-            if (InputText.Length >= 1)
+            if (InputText.Length >= 1 && newInput)
             {
                 InputText.Remove(InputText.Length - 1, 1);
             }
             textBox1.Text = InputText.ToString();
+        }
+
+        private void AddNumber(string number)
+        {
+            if (newInput)
+            {
+                InputText.Clear();
+                InputText.Append(number);
+                textBox1.Text = InputText.ToString();
+            }
+            else
+            {
+                InputText.Append(number);
+                textBox1.Text = InputText.ToString();
+            }
+            newInput = false;
+        }
+
+        private void DoOperation(string operation)
+        {
+            if (firstNumber)
+            {
+                CalResult = Convert.ToDouble(textBox1.Text);
+            }
+            else
+            {
+                if(operation == "+")
+                {
+                    CalResult += Convert.ToDouble(textBox1.Text);
+                    
+                }
+                else if(operation  == "-")
+                {
+                    CalResult -= Convert.ToDouble(textBox1.Text);
+                }
+                else if(operation == "x")
+                {
+                    CalResult *= Convert.ToDouble(textBox1.Text);
+                }
+                else if (OperationSign == "/")
+                {
+                    CalResult /= Convert.ToDouble(textBox1.Text);
+                }
+                
+            }
+            OperationSign = operation;
+            textBox1.Text = Convert.ToString(CalResult);
+            newInput = true;
+            firstNumber = false;
         }
     }
 }
